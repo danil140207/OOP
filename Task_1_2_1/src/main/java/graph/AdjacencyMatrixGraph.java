@@ -8,22 +8,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Граф на матрице смежности.
- */
 public class AdjacencyMatrixGraph extends AbstractGraph {
 
     private final Map<String, Integer> index = new LinkedHashMap<>();
     private final List<String> names = new ArrayList<>();
     private boolean[][] matrix = new boolean[0][0];
-    private int vertexCount = 0;
+    private int size = 0;
 
     private void ensureCapacity() {
-        if (vertexCount == matrix.length) {
+        if (size == matrix.length) {
             int newSize = Math.max(4, matrix.length * 2);
             boolean[][] nm = new boolean[newSize][newSize];
-            for (int i = 0; i < vertexCount; i++) {
-                System.arraycopy(matrix[i], 0, nm[i], 0, vertexCount);
+            for (int i = 0; i < size; i++) {
+                System.arraycopy(matrix[i], 0, nm[i], 0, size);
             }
             matrix = nm;
         }
@@ -35,9 +32,9 @@ public class AdjacencyMatrixGraph extends AbstractGraph {
             return;
         }
         ensureCapacity();
-        index.put(v, vertexCount);
+        index.put(v, size);
         names.add(v);
-        vertexCount++;
+        size++;
     }
 
     @Override
@@ -46,21 +43,21 @@ public class AdjacencyMatrixGraph extends AbstractGraph {
         if (idx == null) {
             return;
         }
-        for (int i = 0; i < vertexCount; i++) {
-            for (int j = idx; j < vertexCount - 1; j++) {
+        for (int i = 0; i < size; i++) {
+            for (int j = idx; j < size - 1; j++) {
                 matrix[i][j] = matrix[i][j + 1];
             }
         }
-        for (int i = idx; i < vertexCount - 1; i++) {
+        for (int i = idx; i < size - 1; i++) {
             matrix[i] = Arrays.copyOf(matrix[i + 1], matrix[i + 1].length);
         }
-        Arrays.fill(matrix[vertexCount - 1], false);
+        Arrays.fill(matrix[size - 1], false);
         names.remove((int) idx);
         index.clear();
         for (int i = 0; i < names.size(); i++) {
             index.put(names.get(i), i);
         }
-        vertexCount--;
+        size--;
     }
 
     @Override
@@ -106,7 +103,7 @@ public class AdjacencyMatrixGraph extends AbstractGraph {
             throw new IllegalArgumentException("Нет вершины: " + v);
         }
         Set<String> res = new LinkedHashSet<>();
-        for (int j = 0; j < vertexCount; j++) {
+        for (int j = 0; j < size; j++) {
             if (matrix[a][j]) {
                 res.add(names.get(j));
             }
@@ -121,7 +118,7 @@ public class AdjacencyMatrixGraph extends AbstractGraph {
 
     @Override
     public int vertexCount() {
-        return vertexCount;
+        return size;
     }
 
     @Override

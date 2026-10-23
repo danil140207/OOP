@@ -4,30 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-/**
- * Чтение графа из файла.
- *
- * <p>Формат файла:
- * <pre>
- * V 3
- * A B C
- * E 2
- * A B
- * B C
- * </pre>
- */
 public final class GraphIo {
 
     private GraphIo() {
     }
 
-    /**
-     * Заполняет граф из файла.
-     *
-     * @param g        граф
-     * @param filename путь к файлу
-     * @throws IOException при ошибке чтения или формата
-     */
     public static void fillFromFile(Graph g, String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line = br.readLine();

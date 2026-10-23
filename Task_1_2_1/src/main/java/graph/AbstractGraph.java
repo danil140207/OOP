@@ -10,24 +10,10 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
-/**
- * Базовый класс: equals, hashCode, toString, топологическая сортировка.
- */
 public abstract class AbstractGraph implements Graph {
 
-    /**
-     * Возвращает соседей вершины.
-     *
-     * @param v имя вершины
-     * @return множество соседей
-     */
     protected abstract Set<String> rawNeighbors(String v);
 
-    /**
-     * Возвращает вершины в стабильном (отсортированном) порядке.
-     *
-     * @return отсортированный список вершин
-     */
     protected List<String> sortedVertices() {
         List<String> list = new ArrayList<>(vertices());
         Collections.sort(list);

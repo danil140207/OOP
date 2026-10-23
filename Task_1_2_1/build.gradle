@@ -3,7 +3,9 @@ plugins {
     id 'jacoco'
 }
 
-repositories { mavenCentral() }
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.2')
@@ -12,7 +14,9 @@ dependencies {
 }
 
 java {
-    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 test {
@@ -22,12 +26,19 @@ test {
 
 jacocoTestReport {
     dependsOn test
-    reports { xml.required = true; html.required = true }
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
 
 jacocoTestCoverageVerification {
     violationRules {
-        rule { limit { minimum = 0.80 } }
+        rule {
+            limit {
+                minimum = 0.80
+            }
+        }
     }
 }
 check.dependsOn jacocoTestCoverageVerification
@@ -40,4 +51,3 @@ javadoc {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
-
