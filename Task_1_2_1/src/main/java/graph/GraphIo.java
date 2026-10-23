@@ -9,9 +9,19 @@ import java.io.IOException;
  */
 public final class GraphIo {
 
+    /**
+     * Приватный конструктор — утилитарный класс.
+     */
     private GraphIo() {
     }
 
+    /**
+     * Заполняет граф из файла.
+     *
+     * @param g        граф
+     * @param filename путь к файлу
+     * @throws IOException при ошибке чтения
+     */
     public static void fillFromFile(Graph g, String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line = br.readLine();

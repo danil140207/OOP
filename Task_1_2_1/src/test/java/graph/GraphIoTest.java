@@ -37,9 +37,9 @@ class GraphIoTest {
     @Test
     void worksWithAllRepresentations() throws Exception {
         Graph[] graphs = new Graph[]{
-                new AdjacencyListGraph(),
-                new AdjacencyMatrixGraph(),
-                new IncidenceMatrixGraph()
+            new AdjacencyListGraph(),
+            new AdjacencyMatrixGraph(),
+            new IncidenceMatrixGraph()
         };
         for (Graph g : graphs) {
             g.loadFromFile(resourcePath("graph.txt"));
