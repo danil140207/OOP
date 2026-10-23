@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Граф на матрице смежности.
+ */
 public class AdjacencyMatrixGraph extends AbstractGraph {
 
     private final Map<String, Integer> index = new LinkedHashMap<>();

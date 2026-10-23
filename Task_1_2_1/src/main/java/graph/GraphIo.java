@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Чтение графа из файла.
+ */
 public final class GraphIo {
 
     private GraphIo() {

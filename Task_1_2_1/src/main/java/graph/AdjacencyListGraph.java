@@ -6,6 +6,9 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Граф на списке смежности.
+ */
 public class AdjacencyListGraph extends AbstractGraph {
 
     private final Map<String, Set<String>> adj = new LinkedHashMap<>();

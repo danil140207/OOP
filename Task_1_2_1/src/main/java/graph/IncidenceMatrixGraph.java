@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Граф на матрице инцидентности.
+ */
 public class IncidenceMatrixGraph extends AbstractGraph {
 
     private final Map<String, Integer> vertexIndex = new LinkedHashMap<>();

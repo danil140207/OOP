@@ -10,6 +10,9 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * Базовый класс графа.
+ */
 public abstract class AbstractGraph implements Graph {
 
     protected abstract Set<String> rawNeighbors(String v);
