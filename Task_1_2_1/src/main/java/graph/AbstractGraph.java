@@ -3,6 +3,7 @@ package graph;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -106,4 +107,39 @@ public abstract class AbstractGraph implements Graph {
         }
         return order;
     }
+    /**                                                 
+     * Топологическая сортировка через DFS.
+     *
+     * @return список вершин в топологическом порядке
+     */
+    public List<String> topologicalSortDfs() {
+        Map<String, Integer> color = new HashMap<>();
+        for (String v : vertices()) {
+            color.put(v, 0);
+        }
+        LinkedList<String> order = new LinkedList<>();
+        for (String v : vertices()) {
+            if (color.get(v) == 0) {
+                dfsVisit(v, color, order);
+            }
+        }
+        return order;
+    }
+
+    private void dfsVisit(String v, Map<String, Integer> color, LinkedList<String> order) {
+        color.put(v, 1);
+        for (String u : rawNeighbors(v)) {
+            if (!color.containsKey(u)) {
+                throw new IllegalStateException("Ребро в неизвестную вершину: " + u);
+            }
+            if (color.get(u) == 1) {
+                throw new IllegalStateException("Граф содержит цикл");
+            }
+            if (color.get(u) == 0) {
+                dfsVisit(u, color, order);
+            }
+        }
+        color.put(v, 2);
+        order.addFirst(v);
+    }                    
 }

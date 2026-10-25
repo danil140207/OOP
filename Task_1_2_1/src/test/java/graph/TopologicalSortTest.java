@@ -56,4 +56,22 @@ class TopologicalSortTest {
         assertEquals(list.topologicalSort(), matrix.topologicalSort());
         assertEquals(list.topologicalSort(), inc.topologicalSort());
     }
+
+    @Test
+    void dfsSortMatchesKahnSort() {
+        Graph g = new AdjacencyListGraph();
+        for (String v : List.of("A", "B", "C", "D")) {
+            g.addVertex(v);
+        }
+        g.addEdge("A", "B");
+        g.addEdge("A", "C");
+        g.addEdge("B", "D");
+        g.addEdge("C", "D");
+        AbstractGraph ag = (AbstractGraph) g;
+        List<String> kahn = ag.topologicalSort();
+        List<String> dfs = ag.topologicalSortDfs();
+        assertEquals(kahn.size(), dfs.size());
+        assertTrue(dfs.indexOf("A") < dfs.indexOf("B"));
+        assertTrue(dfs.indexOf("B") < dfs.indexOf("D"));
+    }
 }
