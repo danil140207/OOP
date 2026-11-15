@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"substring","c":"FileSubstringFinder","l":"find(String, String)","u":"find(java.lang.String,java.lang.String)"},{"p":"substring","c":"SubstringFinder","l":"findAll(Reader, String)","u":"findAll(java.io.Reader,java.lang.String)"},{"p":"substring","c":"Main","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();
